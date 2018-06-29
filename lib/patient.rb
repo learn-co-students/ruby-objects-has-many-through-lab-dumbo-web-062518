@@ -1,3 +1,5 @@
+require 'pry'
+
 class Patient
 attr_reader :name
 @@all = []
@@ -5,6 +7,7 @@ attr_reader :name
 def initialize(name)
   @name = name
   @@all << self
+end
 
 #Class Methods
 def self.all
@@ -13,17 +16,19 @@ end
 
 #Instance Methods
 def new_appointment(doctor, date)
-  Appointment.new (date, self, doctor)
+  Appointment.new(self, doctor, date)
 end
 
 def appointments
-  Appointments.all.select do |appointments|
+  Appointment.all.select do |appointments|
     appointments.patient == self
   end
 end
 
 def doctors
   appointments.map do |appointments|
-    appointments.doctors
+    appointments.doctor
   end
+end
+
 end

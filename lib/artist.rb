@@ -21,14 +21,13 @@ def new_song(title, genre)
 end
 
 def songs
-  Song.all.map do |song|
+  Song.all.select do |song|
     song.artist == self
   end
 end
 
 def genres
   songs.map do |song|
-    # binding.pry
     song.genre
   end
 end
